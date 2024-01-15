@@ -21,6 +21,8 @@
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-switch": "^1.0.3",
     "@radix-ui/react-tooltip": "^1.0.7",
+    "@stytch/nextjs": "^17.0.0",
+    "@stytch/vanilla-js": "^4.3.0",
     "@vercel/analytics": "^1.1.1",
     "@vercel/kv": "^1.0.1",
     "@vercel/og": "^0.6.2",
@@ -43,7 +45,8 @@
     "react-syntax-highlighter": "^15.5.0",
     "react-textarea-autosize": "^8.5.3",
     "remark-gfm": "^3.0.1",
-    "remark-math": "^5.1.1"
+    "remark-math": "^5.1.1",
+    "stytch": "^10.2.0"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",

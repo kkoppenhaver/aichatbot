@@ -18,11 +18,6 @@ export interface UserMenuProps {
   user: Session['user']
 }
 
-function getUserInitials(name: string) {
-  const [firstName, lastName] = name.split(' ')
-  return lastName ? `${firstName[0]}${lastName[0]}` : firstName.slice(0, 2)
-}
-
 export function UserMenu({ user }: UserMenuProps) {
   return (
     <div className="flex items-center justify-between">
@@ -39,10 +34,10 @@ export function UserMenu({ user }: UserMenuProps) {
               />
             ) : (
               <div className="flex items-center justify-center text-xs font-medium uppercase rounded-full select-none h-7 w-7 shrink-0 bg-muted/50 text-muted-foreground">
-                {user?.name ? getUserInitials(user?.name) : null}
+                JS
               </div>
             )}
-            <span className="ml-2">{user?.name}</span>
+            <span className="ml-2">John Smith</span>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent sideOffset={8} align="start" className="w-[180px]">
