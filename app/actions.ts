@@ -8,7 +8,7 @@ import { type Chat } from '@/lib/types'
 
 import { cookies } from 'next/headers'
 
-import loadStytch from "lib/loadStytch";
+import loadStytch from 'lib/loadStytch'
 
 export async function getChats(userId?: string | null) {
   if (!userId) {
@@ -44,28 +44,28 @@ export async function getChat(id: string, userId: string) {
 }
 
 export async function removeChat({ id, path }: { id: string; path: string }) {
-  const stytch = loadStytch();
+  const stytch = loadStytch()
 
   const cookieStore = cookies()
-  const sessionCookie = cookieStore.get('stytch_session');
+  const sessionCookie = cookieStore.get('stytch_session')
 
-  if( ! sessionCookie ) {
+  if (!sessionCookie) {
     return {
       error: 'Unauthorized'
     }
   }
 
   const session = await stytch.sessions.authenticate({
-    session_token: sessionCookie.value,
-  });
+    session_token: sessionCookie.value
+  })
 
   if (!session?.user) {
     return {
       error: 'Unauthorized'
     }
   }
-  
-  const userId = session.user.user_id;
+
+  const userId = session.user.user_id
 
   const uid = await kv.hget<string>(`chat:${id}`, 'userId')
 
@@ -83,20 +83,20 @@ export async function removeChat({ id, path }: { id: string; path: string }) {
 }
 
 export async function clearChats() {
-  const stytch = loadStytch();
+  const stytch = loadStytch()
 
   const cookieStore = cookies()
-  const sessionCookie = cookieStore.get('stytch_session');
+  const sessionCookie = cookieStore.get('stytch_session')
 
-  if( ! sessionCookie ) {
+  if (!sessionCookie) {
     return {
       error: 'Unauthorized'
     }
   }
 
   const session = await stytch.sessions.authenticate({
-    session_token: sessionCookie.value,
-  });
+    session_token: sessionCookie.value
+  })
 
   if (!session?.user) {
     return {
@@ -104,7 +104,11 @@ export async function clearChats() {
     }
   }
 
-  const chats: string[] = await kv.zrange(`user:chat:${session.user.user_id}`, 0, -1)
+  const chats: string[] = await kv.zrange(
+    `user:chat:${session.user.user_id}`,
+    0,
+    -1
+  )
   if (!chats.length) {
     return redirect('/')
   }
@@ -132,20 +136,20 @@ export async function getSharedChat(id: string) {
 }
 
 export async function shareChat(id: string) {
-  const stytch = loadStytch();
+  const stytch = loadStytch()
 
   const cookieStore = cookies()
-  const sessionCookie = cookieStore.get('stytch_session');
+  const sessionCookie = cookieStore.get('stytch_session')
 
-  if( ! sessionCookie ) {
+  if (!sessionCookie) {
     return {
       error: 'Unauthorized'
     }
   }
 
   const session = await stytch.sessions.authenticate({
-    session_token: sessionCookie.value,
-  });
+    session_token: sessionCookie.value
+  })
 
   if (!session?.user) {
     return {

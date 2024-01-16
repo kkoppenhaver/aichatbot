@@ -3,7 +3,7 @@ import { notFound, redirect } from 'next/navigation'
 
 import { cookies } from 'next/headers'
 
-import loadStytch from "lib/loadStytch";
+import loadStytch from 'lib/loadStytch'
 
 import { getChat } from '@/app/actions'
 import { Chat } from '@/components/chat'
@@ -17,18 +17,18 @@ export interface ChatPageProps {
 export async function generateMetadata({
   params
 }: ChatPageProps): Promise<Metadata> {
-  const stytch = loadStytch();
+  const stytch = loadStytch()
 
   const cookieStore = cookies()
-  const sessionCookie = cookieStore.get('stytch_session');
+  const sessionCookie = cookieStore.get('stytch_session')
 
-  if( ! sessionCookie ) {
+  if (!sessionCookie) {
     redirect(`/sign-in?next=/chat/${params.id}`)
   }
 
   const session = await stytch.sessions.authenticate({
-    session_token: sessionCookie.value,
-  });
+    session_token: sessionCookie.value
+  })
 
   if (!session?.user) {
     return {}
@@ -41,18 +41,18 @@ export async function generateMetadata({
 }
 
 export default async function ChatPage({ params }: ChatPageProps) {
-  const stytch = loadStytch();
+  const stytch = loadStytch()
 
   const cookieStore = cookies()
-  const sessionCookie = cookieStore.get('stytch_session');
+  const sessionCookie = cookieStore.get('stytch_session')
 
-  if( ! sessionCookie ) {
+  if (!sessionCookie) {
     redirect(`/sign-in?next=/chat/${params.id}`)
   }
 
   const session = await stytch.sessions.authenticate({
-    session_token: sessionCookie.value,
-  });
+    session_token: sessionCookie.value
+  })
 
   if (!session?.user) {
     redirect(`/sign-in?next=/chat/${params.id}`)

@@ -4,7 +4,7 @@ import OpenAI from 'openai'
 
 import { cookies } from 'next/headers'
 
-import loadStytch from "lib/loadStytch";
+import loadStytch from 'lib/loadStytch'
 
 import { nanoid } from '@/lib/utils'
 
@@ -18,28 +18,28 @@ export async function POST(req: Request) {
   const json = await req.json()
   const { messages, previewToken } = json
 
-  const stytch = loadStytch();
+  const stytch = loadStytch()
 
   const cookieStore = cookies()
-  const sessionCookie = cookieStore.get('stytch_session');
+  const sessionCookie = cookieStore.get('stytch_session')
 
-  if( ! sessionCookie ) {
+  if (!sessionCookie) {
     return new Response('Unauthorized', {
       status: 401
     })
   }
 
   const session = await stytch.sessions.authenticate({
-    session_token: sessionCookie.value,
-  });
+    session_token: sessionCookie.value
+  })
 
   if (!session?.user) {
     return new Response('Unauthorized', {
       status: 401
     })
   }
-  
-  const userId = session.user.user_id;
+
+  const userId = session.user.user_id
 
   if (!userId) {
     return new Response('Unauthorized', {

@@ -45,8 +45,8 @@ export function formatDate(input: string | number | Date): string {
 export const getDomainFromWindow = () => {
   // First, check if this function is being called on the frontend. If so, get domain from windown
   if (typeof window !== 'undefined') {
-    return window.location.origin;
+    return window.location.origin
   }
 
-  return null;
-};
+  return null
+}

@@ -10,13 +10,13 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { IconExternalLink } from '@/components/ui/icons'
 
-import { useStytch, useStytchSession, useStytchUser } from "@stytch/nextjs"
+import { useStytch, useStytchSession, useStytchUser } from '@stytch/nextjs'
 
-import type {User} from "@stytch/vanilla-js";
+import type { User } from '@stytch/vanilla-js'
 
-export function UserMenu({user}:{user:User}) {
-  const stytch = useStytch();
-  const { session } = useStytchSession();
+export function UserMenu({ user }: { user: User }) {
+  const stytch = useStytch()
+  const { session } = useStytchSession()
 
   return (
     <div className="flex items-center justify-between">
@@ -34,11 +34,9 @@ export function UserMenu({user}:{user:User}) {
           <DropdownMenuSeparator />
           <DropdownMenuItem
             className="text-xs"
-            onClick={
-              () => {
-                stytch.session.revoke()
-              }
-            }
+            onClick={() => {
+              stytch.session.revoke()
+            }}
           >
             Log Out
           </DropdownMenuItem>

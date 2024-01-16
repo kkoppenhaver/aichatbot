@@ -22,19 +22,17 @@ import { SidebarMobile } from './sidebar-mobile'
 import { SidebarToggle } from './sidebar-toggle'
 import { ChatHistory } from './chat-history'
 
-import { useStytchUser, useStytch } from "@stytch/nextjs";
+import { useStytchUser, useStytch } from '@stytch/nextjs'
 
 function UserOrLogin() {
-  const { user, isInitialized } = useStytchUser();
-  const stytch = useStytch();
+  const { user, isInitialized } = useStytchUser()
+  const stytch = useStytch()
 
   return (
     <>
       {user ? (
         <>
-          <SidebarMobile>
-            {<ChatHistory userId={user.user_id} />}
-          </SidebarMobile>
+          <SidebarMobile>{<ChatHistory userId={user.user_id} />}</SidebarMobile>
           <SidebarToggle />
         </>
       ) : (

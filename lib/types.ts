@@ -1,5 +1,5 @@
 import { type Message } from 'ai'
-import type {User} from "@stytch/vanilla-js";
+import type { User } from '@stytch/vanilla-js'
 
 export interface Chat extends Record<string, any> {
   id: string
@@ -18,12 +18,14 @@ export type ServerActionResult<Result> = Promise<
     }
 >
 
-export type SWRUser = {
-  user: null;
-  fromCache: false;
-  isInitialized: false;
-} | {
-  user: User | null;
-  fromCache: boolean;
-  isInitialized: true;
-};
+export type SWRUser =
+  | {
+      user: null
+      fromCache: false
+      isInitialized: false
+    }
+  | {
+      user: User | null
+      fromCache: boolean
+      isInitialized: true
+    }
