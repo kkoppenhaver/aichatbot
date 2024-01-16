@@ -35,7 +35,7 @@ const Authenticate = () => {
         });
       }
     }
-  }, [isInitialized, stytch, user]);
+  }, [isInitialized, stytch, user, searchParams]);
 
   useEffect(() => {
     if (!isInitialized) {
