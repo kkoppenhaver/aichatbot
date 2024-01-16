@@ -1,5 +1,4 @@
 import { SidebarDesktop } from '@/components/sidebar-desktop'
-import loadStytch from "lib/loadStytch"
 
 interface ChatLayoutProps {
   children: React.ReactNode

@@ -2,6 +2,10 @@ import { kv } from '@vercel/kv'
 import { OpenAIStream, StreamingTextResponse } from 'ai'
 import OpenAI from 'openai'
 
+import { cookies } from 'next/headers'
+
+import loadStytch from "lib/loadStytch";
+
 import { nanoid } from '@/lib/utils'
 
 export const runtime = 'edge'
@@ -13,9 +17,29 @@ const openai = new OpenAI({
 export async function POST(req: Request) {
   const json = await req.json()
   const { messages, previewToken } = json
+
+  const stytch = loadStytch();
+
+  const cookieStore = cookies()
+  const sessionCookie = cookieStore.get('stytch_session');
+
+  if( ! sessionCookie ) {
+    return new Response('Unauthorized', {
+      status: 401
+    })
+  }
+
+  const session = await stytch.sessions.authenticate({
+    session_token: sessionCookie.value,
+  });
+
+  if (!session?.user) {
+    return new Response('Unauthorized', {
+      status: 401
+    })
+  }
   
-  // TO-DO: Replace with user ID from Stytch
-  const userId = 1
+  const userId = session.user.user_id;
 
   if (!userId) {
     return new Response('Unauthorized', {
