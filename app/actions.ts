@@ -6,6 +6,8 @@ import { kv } from '@vercel/kv'
 
 import { type Chat } from '@/lib/types'
 
+import * as stytch from "stytch";
+
 export async function getChats(userId?: string | null) {
   if (!userId) {
     return []

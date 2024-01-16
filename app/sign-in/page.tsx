@@ -1,6 +1,3 @@
-import { redirect } from 'next/navigation'
-
-import { useStytchUser } from "@stytch/nextjs";
 import Login from "components/login";
 
 export default async function SignInPage() {

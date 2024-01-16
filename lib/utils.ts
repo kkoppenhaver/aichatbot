@@ -41,3 +41,12 @@ export function formatDate(input: string | number | Date): string {
     year: 'numeric'
   })
 }
+
+export const getDomainFromWindow = () => {
+  // First, check if this function is being called on the frontend. If so, get domain from windown
+  if (typeof window !== 'undefined') {
+    return window.location.origin;
+  }
+
+  return null;
+};

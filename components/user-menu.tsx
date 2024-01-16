@@ -28,7 +28,7 @@ export function UserMenu({user}:{user:User}) {
         </DropdownMenuTrigger>
         <DropdownMenuContent sideOffset={8} align="start" className="w-[180px]">
           <DropdownMenuItem className="flex-col items-start">
-            <div className="text-xs font-medium">User</div>
+            <div className="text-xs font-medium">Hi there,</div>
             <div className="text-xs text-zinc-500">{user.emails[0].email}</div>
           </DropdownMenuItem>
           <DropdownMenuSeparator />

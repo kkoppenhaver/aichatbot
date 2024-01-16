@@ -2,10 +2,12 @@
 
 import React from "react";
 import { StytchLogin } from "@stytch/nextjs";
+
 import { Products } from "@stytch/vanilla-js";
 import {OAuthProviders} from '@stytch/vanilla-js';
-
 import type {User} from "@stytch/vanilla-js";
+
+import { getDomainFromWindow } from 'lib/utils';
 
 type SWRUser = {
   user: null;
@@ -24,24 +26,22 @@ const Login = () => {
     },
     buttons: {
       primary: {
-        backgroundColor: "#4A37BE",
-        borderColor: "#4A37BE",
+        backgroundColor: "#000000",
+        borderColor: "#000000",
       },
     },
   };
 
-  const REDIRECT_URL = "http://localhost:3000/authenticate";
-
   const config = {
     products: [Products.emailMagicLinks, Products.oauth],
     emailMagicLinksOptions: {
-      loginRedirectURL: REDIRECT_URL,
+      loginRedirectURL: getDomainFromWindow() + '/authenticate',
       loginExpirationMinutes: 60,
-      signupRedirectURL: REDIRECT_URL,
+      signupRedirectURL: getDomainFromWindow() + '/authenticate',
       signupExpirationMinutes: 60,
     },
     oauthOptions: {
-      providers: [{ type: OAuthProviders.Google}],
+      providers: [{ type: OAuthProviders.Google }],
       loginRedirectURL: REDIRECT_URL,
       signupRedirectURL: REDIRECT_URL,
     },

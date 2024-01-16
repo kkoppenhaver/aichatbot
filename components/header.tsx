@@ -24,18 +24,16 @@ import { ChatHistory } from './chat-history'
 
 import { useStytchUser, useStytch } from "@stytch/nextjs";
 
-async function UserOrLogin() {
+function UserOrLogin() {
   const { user, isInitialized } = useStytchUser();
   const stytch = useStytch();
-
-  console.log(user);
 
   return (
     <>
       {user ? (
         <>
           <SidebarMobile>
-            <ChatHistory userId={user.user_id} />
+            {<ChatHistory userId={user.user_id} />}
           </SidebarMobile>
           <SidebarToggle />
         </>
