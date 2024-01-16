@@ -28,6 +28,8 @@ async function UserOrLogin() {
   const { user, isInitialized } = useStytchUser();
   const stytch = useStytch();
 
+  console.log(user);
+
   return (
     <>
       {user ? (
