@@ -42,8 +42,8 @@ const Login = () => {
     },
     oauthOptions: {
       providers: [{ type: OAuthProviders.Google }],
-      loginRedirectURL: REDIRECT_URL,
-      signupRedirectURL: REDIRECT_URL,
+      loginRedirectURL: getDomainFromWindow() + '/authenticate',
+      signupRedirectURL: getDomainFromWindow() + '/authenticate',
     },
   };
 
