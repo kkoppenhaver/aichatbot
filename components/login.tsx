@@ -41,7 +41,7 @@ const Login = () => {
       signupExpirationMinutes: 60,
     },
     oauthOptions: {
-      providers: [{ type: OAuthProviders.Google }],
+      providers: [{ type: OAuthProviders.Google }, { type: OAuthProviders.Github }],
       loginRedirectURL: getDomainFromWindow() + '/authenticate',
       signupRedirectURL: getDomainFromWindow() + '/authenticate',
     },
