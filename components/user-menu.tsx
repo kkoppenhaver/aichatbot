@@ -12,7 +12,9 @@ import { IconExternalLink } from '@/components/ui/icons'
 
 import { useStytch, useStytchSession, useStytchUser } from "@stytch/nextjs"
 
-export function UserMenu({ user }) {
+import type {User} from "@stytch/vanilla-js";
+
+export function UserMenu({user}:{user:User}) {
   const stytch = useStytch();
   const { session } = useStytchSession();
 

@@ -3,6 +3,19 @@
 import React from "react";
 import { StytchLogin } from "@stytch/nextjs";
 import { Products } from "@stytch/vanilla-js";
+import {OAuthProviders} from '@stytch/vanilla-js';
+
+import type {User} from "@stytch/vanilla-js";
+
+type SWRUser = {
+  user: null;
+  fromCache: false;
+  isInitialized: false;
+} | {
+  user: User | null;
+  fromCache: boolean;
+  isInitialized: true;
+};
 
 const Login = () => {
   const styles = {
@@ -28,7 +41,7 @@ const Login = () => {
       signupExpirationMinutes: 60,
     },
     oauthOptions: {
-      providers: [{ type: "google" }],
+      providers: [{ type: OAuthProviders.Google}],
       loginRedirectURL: REDIRECT_URL,
       signupRedirectURL: REDIRECT_URL,
     },
