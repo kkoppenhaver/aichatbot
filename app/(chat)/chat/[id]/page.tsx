@@ -17,19 +17,24 @@ export interface ChatPageProps {
 export async function generateMetadata({
   params
 }: ChatPageProps): Promise<Metadata> {
+  const stytch = loadStytch();
 
-  // TO-DO: Get stytch user ID here
-  const session = {
-    user: {
-      id: '1'
-    }
-  };
+  const cookieStore = cookies()
+  const sessionCookie = cookieStore.get('stytch_session');
+
+  if( ! sessionCookie ) {
+    redirect(`/sign-in?next=/chat/${params.id}`)
+  }
+
+  const session = await stytch.sessions.authenticate({
+    session_token: sessionCookie.value,
+  });
 
   if (!session?.user) {
     return {}
   }
 
-  const chat = await getChat(params.id, session.user.id)
+  const chat = await getChat(params.id, session.user.user_id)
   return {
     title: chat?.title.toString().slice(0, 50) ?? 'Chat'
   }
