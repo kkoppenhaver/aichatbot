@@ -56,6 +56,12 @@ export async function removeChat({ id, path }: { id: string; path: string }) {
   //   }
   // }
 
+  const session = {
+    user: {
+      id: '1'
+    }
+  };
+
   await kv.del(`chat:${id}`)
   await kv.zrem(`user:chat:${session.user.id}`, `chat:${id}`)
 
@@ -71,6 +77,12 @@ export async function clearChats() {
   //     error: 'Unauthorized'
   //   }
   // }
+
+  const session = {
+    user: {
+      id: '1'
+    }
+  };
 
   const chats: string[] = await kv.zrange(`user:chat:${session.user.id}`, 0, -1)
   if (!chats.length) {
@@ -107,6 +119,12 @@ export async function shareChat(id: string) {
   //     error: 'Unauthorized'
   //   }
   // }
+
+  const session = {
+    user: {
+      id: '1'
+    }
+  };
 
   const chat = await kv.hgetall<Chat>(`chat:${id}`)
 
