@@ -7,6 +7,10 @@
   An open-source AI chatbot app template built with Next.js, the Vercel AI SDK, OpenAI, Vercel KV and Stytch.
 </p>
 
+<p align="center">
+  For more information about the development of this project and the process involved, check out the <a href="https://www.keanankoppenhaver.com/done-for-you-authentication-with-stytch/">project writeup</a>.
+</p>
+
 ## Features
 
 - [Next.js](https://nextjs.org) App Router
@@ -25,6 +29,12 @@
 If you don't want to mess with configuring environment variables and setting up your own infrastructure, you can try the already-deployed and configured version currently live at: [https://aichatbot-nu.vercel.app/](https://aichatbot-nu.vercel.app/)
 
 ## Running locally
+
+To run this project locally, start by cloning this repository onto your local machine.
+
+```bash
+git clone git@github.com:kkoppenhaver/aichatbot.git
+```
 
 ### Creating a KV Database Instance
 
@@ -48,3 +58,7 @@ Your app template should now be running on [localhost:3000](http://localhost:300
 ## History
 
 This codebase was forked from the [Vercel AI Chatbot demo](https://github.com/vercel/ai-chatbot) and the originally-included NextAuth.js authentication was swapped out to allow the application to leverage Stytch instead.
+
+## Possible future improvements
+  - **Additional models**: Since the original use of this project was intended to be a demonstration of different AI models, a future version will have a model selector to let users utilize different models for different types of chats.
+  - **Add support for models with vision**: Allow users to upload images and have the selected model process them to include information about these images in chats.
